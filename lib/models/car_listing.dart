@@ -6,6 +6,7 @@ class CarListing {
   final String imageUrl;
   final String url;
   final DateTime postedAt;
+  final String? sellerId;
 
   CarListing({
     this.id,
@@ -15,6 +16,7 @@ class CarListing {
     required this.imageUrl,
     required this.url,
     required this.postedAt,
+    this.sellerId,
   });
 
   factory CarListing.fromMap(Map<String, dynamic> map) {
@@ -26,6 +28,7 @@ class CarListing {
       imageUrl: map['imageUrl'],
       url: map['url'],
       postedAt: DateTime.parse(map['postedAt']),
+      sellerId: map['sellerId'],
     );
   }
 
@@ -38,6 +41,7 @@ class CarListing {
       'imageUrl': imageUrl,
       'url': url,
       'postedAt': postedAt.toIso8601String(),
+      'sellerId': sellerId,
     };
   }
 }
