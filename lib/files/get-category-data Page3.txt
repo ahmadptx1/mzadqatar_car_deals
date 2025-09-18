@@ -1,0 +1,11 @@
+POST /get-category-data HTTP/2
+Host: api.mzadqatar.com
+X-Requested-With: XMLHttpRequest
+Guest-Token: Bearer Guest/User/Token/6SP4ZCaQdXwr0XPoB7hrhNysc2Y4yXwI4fA2sbENioAFuGE0FDfKRkuR7bcDQztmEKmxGkBM41Sht6zQLkNTlYeKUyBHfv7nun5BHmwQ87kYr69UfHL/Guest/User/Token
+Accept-Language: en
+Content-Type: application/json; charset=utf-8
+Content-Length: 419
+Accept-Encoding: gzip, deflate, br
+User-Agent: okhttp/5.0.0-alpha.14
+
+{"advertiseResolution":"large","countOfRow":2,"isAdsSupported":true,"numberperpage":50,"lastupdatetime":0,"page":3,"productId":1,"isNewUpdate":1,"searchStr":"","productsLang":"en","categoryAdvertiseTypeId":"0","userIpAddress":"10.161.101.2","userDeviceModel":"Samsung SM-G973N","userDeviceLanguage":"en","SetAdvertiseLanguage":"en","userDeviceType":"Android","versionNumber":"26.2","userMacAddress":"D4:D2:52:84:BA:D9"}
