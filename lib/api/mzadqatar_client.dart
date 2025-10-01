@@ -43,18 +43,24 @@ class MzadQatarClient {
 
   Future<Map<String, dynamic>> postJson(String path, Map<String, dynamic> body) async {
     final url = Uri.parse(baseUrl + path);
-    final headers = {
-      'Content-Type': 'application/json',
-      'Guest-Token': token,
-      'X-Requested-With': 'XMLHttpRequest',
-      'Accept-Language': 'en',
-      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-      'Accept': 'application/json, text/plain, */*',
-      'Accept-Encoding': 'gzip, deflate, br',
-      'Connection': 'keep-alive',
-    };
-
-    try {
+  final headers = {
+    'Content-Type': 'application/json',
+    'Guest-Token': token,
+    'X-Requested-With': 'XMLHttpRequest',
+    'Accept-Language': 'en',
+    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; SM-G973F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Mobile Safari/537.36',
+    'Accept': 'application/json, text/plain, */*',
+    'Accept-Encoding': 'gzip, deflate, br',
+    'Connection': 'keep-alive',
+    'Referer': 'https://mzadqatar.com/',
+    'Origin': 'https://mzadqatar.com',
+    'Sec-Fetch-Dest': 'empty',
+    'Sec-Fetch-Mode': 'cors',
+    'Sec-Fetch-Site': 'same-site',
+    'sec-ch-ua': '"Google Chrome";v="119", "Chromium";v="119", "Not?A_Brand";v="24"',
+    'sec-ch-ua-mobile': '?1',
+    'sec-ch-ua-platform': '"Android"',
+  };    try {
       print('🌐 DEBUG: Making request to ${url.toString()}');
       final resp = await _client.post(url, headers: headers, body: json.encode(body));
       print('📡 DEBUG: Response status: ${resp.statusCode}');
