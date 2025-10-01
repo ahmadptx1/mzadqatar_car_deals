@@ -1,12 +1,20 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import '../models/car_listing.dart';
 
 class DatabaseHelper {
   static final DatabaseHelper instance = DatabaseHelper._init();
   static Database? _database;
 
-  DatabaseHelper._init();
+  DatabaseHelper._init() {
+    // Initialize sqflite for web
+    if (kIsWeb) {
+      sqfliteFfiInit();
+      databaseFactory = databaseFactoryFfi;
+    }
+  }
 
   Future<Database> get database async {
     if (_database != null) return _database!;
@@ -15,10 +23,15 @@ class DatabaseHelper {
   }
 
   Future<Database> _initDB(String filePath) async {
-    final dbPath = await getDatabasesPath();
-    final path = join(dbPath, filePath);
-
-  return await openDatabase(path, version: 1, onCreate: _createDB, onUpgrade: _onUpgrade);
+    if (kIsWeb) {
+      // For web, use a simple database name
+      return await openDatabase(filePath, version: 1, onCreate: _createDB, onUpgrade: _onUpgrade);
+    } else {
+      // For mobile, use the standard path
+      final dbPath = await getDatabasesPath();
+      final path = join(dbPath, filePath);
+      return await openDatabase(path, version: 1, onCreate: _createDB, onUpgrade: _onUpgrade);
+    }
   }
 
   Future _createDB(Database db, int version) async {
